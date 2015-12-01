@@ -1,6 +1,11 @@
 {
   "scripts": {
-    "start": "webpack-dev-server",
-    "solution": "webpack-dev-server --config webpack.solution.config.js"
+    "start": "../node_modules/.bin/webpack-dev-server",
+    "solution": "../node_modules/.bin/webpack-dev-server --config webpack.solution.config.js"
+  },
+  "devDependencies": {
+    "react": "^0.14.3",
+    "react-bootstrap": "^0.28.1",
+    "react-dom": "^0.14.3"
   }
 }
