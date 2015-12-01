@@ -1,27 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import moment from 'moment'
-import Bootstrap from 'react-bootstrap';
-import Jumbotron from 'react-bootstrap/lib/Jumbotron';
-var Button = require('react-bootstrap').Button;
-import Panel from 'react-bootstrap/lib/Panel'
+import Panel from 'react-bootstrap/lib/Panel';
+import Label from 'react-bootstrap/lib/Label';
 
-class LunchApp extends React.Component {
-  render() {
-    var now = new Date();
-    var formattedDate = moment(now).format('MMMM Do YYYY');
-    return (
-      <div>
-        <Panel>
-          <h2>Options for lunch for {formattedDate}</h2>
 
-        </Panel>
-      </div>
-    );
-  }
+class LunchOptionsPanel extends React.Component {
+
+    render() {
+        return (
+            <h3><Label>{this.props.name}</Label></h3>
+        );
+    }
+
 }
 
+class LunchApp extends React.Component {
+
+    render() {
+
+        let lunchChoices = this.props.lunchChoices.map(c => <LunchOptionsPanel name={c} />);
+
+        return (
+            <div>
+                <Panel>
+                    <h2>Options for lunch:</h2>
+                    {lunchChoices}
+                </Panel>
+            </div>
+        );
+    }
+
+}
+
+var lunchChoices = ['pizza', 'bacon', 'ribs'];
+
+
 ReactDOM.render(
-  <LunchApp/>,
+  <LunchApp lunchChoices={ lunchChoices }/>,
   document.getElementById('root')
 );
