@@ -1,22 +1,26 @@
 .example-enter {
-  opacity: 0.01;
+  /*opacity: 0.01;*/
   /*transition: opacity .5s ease-in;*/
   /*transform: translate3d(-100%, 0, 0);*/
-  transform: translate(100%, 0);
+  transform: scale(0);
+  transition: all 3s ease-in;
   /*transition: transform 1s ease-in;*/
 }
 
 .example-enter.example-enter-active {
-  opacity: 1;
-  transform: translate(0, 0);
-  transition: transform .5s ease-in;
+  /*opacity: 1;*/
+  transform: scale(1);
+  transition: all 3s ease-in;
 }
 
 .example-leave {
-  opacity: 1;
-  transition: opacity .5s ease-in;
+  /*opacity: 1;*/
+  transform: scale(0);
+  transition: all 3s ease-in;
 }
 
 .example-leave.example-leave-active {
-  opacity: 0.01;
+  /*opacity: 0.01;*/
+  transform: scale(1);
+  transition: all 3s ease-in;
 }

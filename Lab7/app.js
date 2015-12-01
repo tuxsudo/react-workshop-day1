@@ -61,7 +61,7 @@ class SelectedLunchPanel extends React.Component {
     return (
       <div>
         <Panel header="You've picked" bsStyle="warning">
-          <ReactTransitionGroup transitionName="example">
+          <ReactTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
           {selectLunchMarkup}
         </ReactTransitionGroup>
 
