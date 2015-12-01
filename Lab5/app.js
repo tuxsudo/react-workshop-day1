@@ -10,25 +10,61 @@ import ButtonInput from 'react-bootstrap/lib/ButtonInput'
 import Label from 'react-bootstrap/lib/Label'
 
 class LunchApp extends React.Component {
-  render() {
-    var now = new Date();
-    var formattedDate = moment(now).format('MMMM Do YYYY');
-    return (
-      <div>
-        <Panel>
-          <h2>Options for lunch for {formattedDate}</h2>
-          <LunchOptionsPanel lunchData={this.props.lunchChoices}> </LunchOptionsPanel>
-        </Panel>
-      </div>
-    );
-  }
+
+    constructor(props) {
+        super(props);
+        this.state = { selected: this.props.selected };
+    }
+
+    _selectLunch(lunch) {
+        this.setState({selected: lunch});
+    }
+
+    render() {
+        var now = new Date();
+        var formattedDate = moment(now).format('MMMM Do YYYY');
+
+        return (
+            <div>
+                <Panel>
+                    <h2>Options for lunch for {formattedDate}</h2>
+                    <LunchOptionsPanel
+                        lunchData={this.props.lunchChoices}
+                        clickAction={ this._selectLunch.bind(this) }
+                    />
+                </Panel>
+
+                <Panel>
+                    <SelectedLunchPanel
+                        selected={this.state.selected}>
+                    </SelectedLunchPanel>
+                </Panel>
+            </div>
+        );
+    }
 }
+
+
+class SelectedLunchPanel extends React.Component {
+
+    render() {
+        return (
+            <div>You selected {this.props.selected}</div>
+        );
+    }
+}
+
+
 
 class LunchOptionsPanel extends React.Component {
   render() {
-    let lunchOptions = this.props.lunchData.map(function(c,i) {
-      return <h3 key={i}><Label>{c}</Label></h3>
-    });
+
+    let lunchOptions = this.props.lunchData.map( (c,i) => (
+          <h3 key={i} onClick={e=>this.props.clickAction(c) }>
+              <Label>{c}</Label>
+          </h3>
+    ));
+
     return (
       <div>
         <Panel header="Please select one" bsStyle="info">
@@ -42,6 +78,6 @@ class LunchOptionsPanel extends React.Component {
 
 var lunchChoices = ['Chicken', 'Fish', 'Vegetarian'];
 ReactDOM.render(
-  <LunchApp lunchChoices={lunchChoices}/>,
+  <LunchApp lunchChoices={lunchChoices} selected="Nothing :("/>,
   document.getElementById('root')
 );
