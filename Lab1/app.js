@@ -6,23 +6,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // ES5 style
-var HelloWorldES5 = React.createClass({
-  render() {
-    var now = new Date();
-    return (
-      <div>Hello World!
-      </div>
-    );
-  }
-});
+// var HelloWorldES5 = React.createClass({
+//   render() {
+//     var now = new Date();
+//     return (
+//       <div>Hello World!
+//       </div>
+//     );
+//   }
+// });
 
 // ES6 version
 class HelloWorld extends React.Component {
   render() {
-    let now = new Date();
+    let now = new Date(),
+        dt = now.toISOString(),
+        human = now.toLocaleString();
+
     return (
-      <div>Hello World!
+      <div>
+          <h1>Hello World!</h1>
+          <time dateTime={dt}>{human}</time>
       </div>
+
     );
   }
 }
